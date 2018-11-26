@@ -12,7 +12,7 @@ import { setContext } from 'apollo-link-context';
 import { ListAllRepositoriesComponent } from './list-all-repositories/list-all-repositories.component';
 
 const authLink = setContext((_, { headers }) => {
-  const token = "b1338d06c28a439b57d589fc631742dad6d26bc6";
+  const token = "005b989fa423015f8137131d63cad541d1eef449";
   return {
     headers: {
       ...headers,
