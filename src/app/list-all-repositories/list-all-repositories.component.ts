@@ -14,34 +14,21 @@ import { Observable } from 'rxjs';
 })
 export class ListAllRepositoriesComponent implements OnInit {
   allPublicRepositories: Observable<Repository[]>;
-  constructor(private apollo: Apollo) { }
+  constructor (private apollo: Apollo) { }
 
   ngOnInit() {
     this.allPublicRepositories = this.apollo.watchQuery<Query>({
       query: gql`
-        query allRepositories($queryString: String!){
-          search(query:$queryString, type:REPOSITORY, first:20){
-          
-          edges{
-            node{
-            ... on Repository{
-              id
-              name
-              description 
-              isPrivate
-              url
-              owner{
-              login
-              id
-              url
+        query allRepositories ($queryString: String!) {
+          search (query:$queryString, type:REPOSITORY, first:100) {
+            edges {
+              node {
+                ... on Repository {
+                    name
+                    url
+                }
               }
-              assignableUsers{
-              totalCount
-              }
-        
             }
-            }
-          }
           }
         }
       `,
@@ -50,7 +37,7 @@ export class ListAllRepositoriesComponent implements OnInit {
       }
     })
     .valueChanges
-    .pipe(
+    .pipe (
       map(result => result.data.search.edges)
     );
   }

@@ -2,6 +2,6 @@
 <div *ngFor="let rep of allPublicRepositories | async">
   <div class="card" style="width: 100%; margin-top: 10px">
     <h5 class="card-name">Repository name: {{rep.node.name}}</h5>
-    <a href="{{rep.node.url}}" class="card-link">Go to repository</a>
+    <a href="{{rep.node.url + '/graphs/contributors'}}" class="card-link">Go to contributors...</a>
   </div>
 </div>
